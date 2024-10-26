@@ -1,0 +1,101 @@
+<%- include("../header") %>
+
+<section class=" gradient-customLogin">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card text-white" style="border-radius: 1rem; background-color: rgba(25, 26, 26, 0.734); height: 800px;">
+                    <div class="p-5 text-center">
+
+                        <div class="mb-md-5 mt-md-4 pb-5">
+
+                            <h2 class="fw-bold mb-2 text-uppercase">User-Login</h2>
+                            <p class="text-white-50 mb-5">Select your role<br>&<br>Please enter your email and password!</p>
+
+                            <form id="loginForm" action="/login" method="post">
+                                <div class="form-outline form-white ">
+                                    <div id="errormessage">&nbsp;</div>
+                                    <input type="email" id="email" class="form-control form-control-lg" name="login_email" onkeyup="validateEmail()" required />
+                                    <label class="form-label" for="email">Email</label>
+                                </div>
+
+                                <div class="form-outline form-white m">
+                                    <div id="errormessagePass">&nbsp;</div>
+                                    <input type="password" id="password" class="form-control form-control-lg" name="login_password" onkeyup="validatePassword()" required />
+                                    <label class="form-label" for="password">Password</label>
+                                </div>
+
+                               
+                                <button class="btn btn-outline-light btn-lg px-5" type="submit">Login</button>
+                               
+                                <% if (typeof message !== 'undefined') { %>
+                                    <% if (message === "registration successfully") { %>
+                                        <h6 class="fw-bold mb-2 text-success"><%= message %></h6>
+                                    <% } else { %>
+                                        <h6 class="fw-bold mb-2 text-danger text-uppercase mt-4"><%= message %></h6>
+                                    <% } %>
+                                <% } %>
+
+                                <p class="mb-0">Don't have an account? <a href="/" class="text-white-50 fw-bold">Sign Up</a></p>
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      
+            
+            const isValidEmail = validateEmail();
+            const isValidPassword = validatePassword();
+            
+            if (!isValidEmail || !isValidPassword) {
+                e.preventDefault();
+                alert('Details are incorrect');
+            } 
+        
+    });
+
+    function validateEmail() {
+        const email = document.getElementById('email').value;
+        const error = document.getElementById('errormessage');
+        const EMAIL_REGEX = /^[^\s@]+@gmail\.com$/i;
+
+        if (!EMAIL_REGEX.test(email)) {
+            error.textContent = 'Not valid';
+            error.style.color = 'red';
+            error.style.backgroundColor = 'black';
+            return false;
+        } else {
+            error.textContent = 'Valid';
+            error.style.color = 'green';
+            error.style.backgroundColor = 'black';
+            return true;
+        }
+    }
+
+    function validatePassword() {
+        const password = document.getElementById('password').value;
+        const error = document.getElementById('errormessagePass');
+        const PASSWORD_REGEX = /^[\w\d]{6,}$/;
+
+        if (!PASSWORD_REGEX.test(password)) {
+            error.textContent = 'Password must be at least 6 characters';
+            error.style.color = 'red';
+            error.style.backgroundColor = 'black';
+            return false;
+        } else {
+            error.textContent = 'Valid password';
+            error.style.color = 'green';
+            error.style.backgroundColor = 'black';
+            return true;
+        }
+    }
+</script>
+
+<%- include("../footer") %>

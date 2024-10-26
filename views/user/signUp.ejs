@@ -1,0 +1,142 @@
+<%- include("../header")%>
+
+<section class=" gradient-custom">
+    <div class="container py-5 ">
+        <div class="row d-flex justify-content-center align-items-center " >
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5 pt-5">
+                <div class="card text-white " style="border-radius: 1rem; background-color: rgba(0, 0, 0, 0.386); height:785px; ">
+                    <div class="p-5 text-center">
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            <h2 class="fw-bold mb-2 text-uppercase">User-Registration</h2>
+                            <p class="text-white-50 mb-5">Please register your login and password!</p>
+
+                            <form id="registrationForm" action="/reg"  method="POST">
+                                <div id="nameErorr">&nbsp</div>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <input type="text" id="name" class="form-control form-control-lg" placeholder="Name" name="name" onkeyup="validateName()" required />
+                                    <br>
+                                </div>
+                                <div id="errormessage">&nbsp;</div>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <input type="email" class="form-control form-control-lg" placeholder="Email" name="email" id="email" required  onkeyup="validateEmail()"/>
+                                    <br>
+                                </div>
+                                <div id="errormessagePass">&nbsp</div>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <input type="password" class="form-control form-control-lg" placeholder="Password" name="password" id="Password" required onkeyup="validatePassword()"  />
+                                </div>
+
+                                
+
+                                <br>
+                                <br>
+
+                                
+                                <button type="submit" class="btn btn-outline-light btn-lg px-5">Sign Up</button>
+                                <br>
+                                <br>
+                                <p class="mb-0">Already have an account? <a href="/loginLoad" class="text-white-50 fw-bold">Log-in</a></p>
+                                <% if (typeof message !== 'undefined') { %>
+                                    <h2 class="fw-bold mb-2 text-danger"><%= message %></h2>
+                                <% } %>
+
+                                
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+
+
+
+
+
+
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+    
+           
+                if((!validateName() || !validateEmail() || !validatePassword())){
+                    
+                    e.preventDefault();
+                    alert('Details are incorrect');
+                }
+    });
+
+    function validateEmail(){
+    
+    const email=document.getElementById('email').value
+    const error=document.getElementById('errormessage')  
+   error.style.backgroundColor='black'
+    const EMAIL_REGEX = /^[^\s@]+@gmail\.com$/i;
+
+
+    if(!EMAIL_REGEX.test(email)){
+       error.innerHTML='Not valid'
+       error.style.color='red'
+       error.style.backgroundColor='black'
+       return false
+    }else{
+         error.innerHTML='valid'
+       error.style.color='green'
+       return true;
+    }
+
+   
+
+}
+
+   function  validatePassword(){
+
+   
+   const password=document.getElementById('Password').value
+   const errorpass=document.getElementById('errormessagePass')
+   const PASSWORD_REGEX = /^[\w\d]{6,}$/;
+
+   
+   if(!PASSWORD_REGEX.test(password)){
+     errorpass.innerHTML='password must be at least 6 characters'
+     errorpass.style.color='red'
+     errorpass.style.backgroundColor='black'
+     return false;
+   }else{
+
+    errorpass.innerHTML='valid password'
+    errorpass.style.color='green'
+    errorpass.style.backgroundColor='black'
+    return true;
+   }
+
+  }
+
+    function validateName(){
+        NAME_REGEX=/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/
+       const name=document.getElementById('name').value
+       const nameErorr=document.getElementById('nameErorr')
+       if(!NAME_REGEX.test(name)){
+         nameErorr.innerHTML='Enter Valid name'
+         nameErorr.style.color='red'
+         nameErorr.style.backgroundColor='black'
+         return false; 
+       }else{
+        nameErorr.innerHTML='Valid'
+        nameErorr.style.color='green' 
+         nameErorr.style.backgroundColor='black'
+         return true;
+       }
+
+    }
+
+
+  
+
+
+    
+</script>
+
+<%- include('../footer')%>
+

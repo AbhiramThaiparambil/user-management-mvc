@@ -1,0 +1,64 @@
+.gradient-custom {
+    /* fallback for old browsers */
+  
+    /* Chrome 10-25, Safari 5.1-6 */
+    overflow-y: hidden;
+    background-color: #FF3CAC;
+background-image: linear-gradient(225deg, #FF3CAC 0%, #784BA0 50%, #2B86C5 100%);
+
+    
+    
+    
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    }
+.gradient-customLogin,.homebody{
+    background-color: #74EBD5;
+background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
+
+}
+/* .homebody{
+   
+} */
+
+.gradient-customLogin_Admin{
+    background-image: url(background.img/pexels-muffin-2468773.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    /* From https://css.glass */
+
+}
+/* .lol{ 
+
+/* From https://css.glass */
+/* background: rgba(255, 255, 255, 0.2);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+
+border: 1px solid rgba(255, 255, 255, 0.3); */
+.gradient-custom11{
+    background: 
+    radial-gradient(farthest-side at -33.33% 50%,#0000 52%,#14142b 54% 57%,#0000 59%) 0 calc(128px/2),
+    radial-gradient(farthest-side at 50% 133.33%,#0000 52%,#14142b 54% 57%,#0000 59%) calc(128px/2) 0,
+    radial-gradient(farthest-side at 133.33% 50%,#0000 52%,#14142b 54% 57%,#0000 59%),
+    radial-gradient(farthest-side at 50% -33.33%,#0000 52%,#14142b 54% 57%,#0000 59%),
+    #123843;
+background-size: calc(128px/4.667) 128px,128px calc(128px/4.667);
+
+}
+
+.gradient-custom12{
+    background: 
+    radial-gradient(farthest-side at -33.33% 50%,#0000 52%,#322727 54% 57%,#0000 59%) 0 calc(172px/2),
+    radial-gradient(farthest-side at 50% 133.33%,#0000 52%,#322727 54% 57%,#0000 59%) calc(172px/2) 0,
+    radial-gradient(farthest-side at 133.33% 50%,#0000 52%,#322727 54% 57%,#0000 59%),
+    radial-gradient(farthest-side at 50% -33.33%,#0000 52%,#322727 54% 57%,#0000 59%),
+    #000000;
+background-size: calc(172px/4.667) 172px,172px calc(172px/4.667);
+
+
+}

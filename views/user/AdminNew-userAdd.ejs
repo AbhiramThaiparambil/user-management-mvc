@@ -1,0 +1,108 @@
+<%-include("../header")%>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <h1 class="text-center">Add new user</h1>
+            <form action="/addNewuserdata" method="post">
+                <div class="mb-3">
+                    <div id="nameErorr"></div>
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter your name" name="nUser_name" onkeyup="validateName() " >
+                </div>
+                <div class="mb-3">
+                    <div id="errormessage"></div>
+                    <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required onkeyup="validateEmail()" name="nUser_email">
+                </div>
+                <div class="mb-3">
+                    <div id="errormessagePass"></div>
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="Password" placeholder="Enter your password" onkeyup="validatePassword()" name="nUser_password">
+                </div>
+                <div class="form-check mb-3">
+                    <input type="checkbox" class="form-check-input" id="agree">
+                    <label class="form-check-label" for="agree">I agree to be emailed <span class="text-danger">*</span></label>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Add user</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+function validateEmail(){
+    
+    const email=document.getElementById('email').value
+    const error=document.getElementById('errormessage')  
+   error.style.backgroundColor='black'
+    const EMAIL_REGEX = /^[^\s@]+@gmail\.com$/i;
+
+
+    if(!EMAIL_REGEX.test(email)){
+       error.innerHTML='Not valid'
+       error.style.color='red'
+       error.style.backgroundColor='black'
+       return false
+    }else{
+         error.innerHTML='valid'
+       error.style.color='green'
+       return true;
+    }
+
+   
+    
+}
+
+   function  validatePassword(){
+
+   
+   const password=document.getElementById('Password').value
+   const errorpass=document.getElementById('errormessagePass')
+   const PASSWORD_REGEX = /^[\w\d]{6,}$/;
+
+   
+   if(!PASSWORD_REGEX.test(password)){
+     errorpass.innerHTML='password must be at least 6 characters'
+     errorpass.style.color='red'
+    
+    errorpass.style.backgroundColor='black'
+     return false;
+   }else{
+
+    errorpass.innerHTML='valid password'
+    errorpass.style.color='green'
+    errorpass.style.backgroundColor='black'
+    return true;
+   }
+
+
+    }
+
+    function validateName(){
+        NAME_REGEX=/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/
+       const name=document.getElementById('name').value
+       const nameErorr=document.getElementById('nameErorr')
+       if(!NAME_REGEX.test(name)){
+         nameErorr.innerHTML='Enter Valid name'
+         nameErorr.style.color='red'   
+         nameErorr.style.backgroundColor='black'  
+       }else{
+        nameErorr.innerHTML='Valid'
+        nameErorr.style.color='green' 
+       }
+
+    }
+
+
+    document.getElementById('loginForm').addEventListener('Submit',(e)=>{
+       if(!validateEmail()||!validatePassword()){
+        e.preventDefault()
+           
+           alert('Details are incorrect');
+       
+       }
+   })
+
+</script>
+
+
+<%-include("../footer")%>

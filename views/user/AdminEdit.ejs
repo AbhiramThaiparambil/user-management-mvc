@@ -1,0 +1,65 @@
+<%-include("../header")%>
+<section class="vh-100 bg-dark">
+    <div class="pt-2">
+        <div class="d-flex justify-content-between align-items-center border rounded bg-light fixed-top mt-2">
+            <!-- Logout Logo -->
+            <img src="https://img.icons8.com/ios-filled/50/000000/logout-rounded.png" alt="Logout Logo" width="40">
+            <form class="form-inline pl-5">
+                <input class="form-control ml-5 bg-info text-white display-1" style="width: 700px;" type="search" placeholder="Search" aria-label="Search" name="Search" id="Search">
+            </form>
+            <!-- Buttons -->
+            <div>
+                <a href="/Adminhome2"><button class="btn btn-primary mr-2 btn-outline-dark pl-5 pr-5 mr-5">Home</button></a>
+                <a href="/logoutAdmin"><button class="btn btn-danger btn-outline-dark pl-5 pr-5 mr-5">Logout</button></a>
+                <a href="/newuser"><button class="btn btn-primary mr-2 btn-outline-dark pl-5 pr-5 mr-5">Add New User</button></a>
+            </div>
+        </div>
+    </div>
+
+    <table class="table table-dark mt-5">
+        <thead class="sticky-top bg-info">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Admin/User</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% for (let i = 0; i < user.length; i++) { %>
+                <tr>
+                    <th scope="row"><%= i + 1 %></th>
+                    <td class="pl-5"><%= user[i].name %></td>
+                    <td class="pl-5"><%= user[i].email %></td>
+                    <td class="pl-5"><%= user[i].is_admin ? 'Admin' : 'User' %></td>
+                    <td class=""><a href="/Useredit?_id=<%=user[i]._id%>"><button class="btn btn-primary btn-outline-dark">Edit</button></a></td>
+                    <td class=""><a href="/deletUser?_id=<%=user[i]._id%>"><button class="btn btn-danger btn-outline-dark">Delete</button></a></td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</section>
+
+<script>
+let search=document.getElementById("Search")
+ search.addEventListener('keyup', function (){
+
+    let filter = this.value.toLowerCase();
+
+    let  rows = document.querySelectorAll('table tbody tr');
+
+    rows.forEach(function(row) {
+        let text = row.textContent.toLowerCase();
+
+        if (text.includes(filter)) {
+            row.style.display = '';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+</script>
+
+<%-include("../footer")%>
